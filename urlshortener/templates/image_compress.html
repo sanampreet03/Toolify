@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Image Compressor | Toolify</title>
+
+<style>
+
+/* ---------- BODY ---------- */
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    margin:0;
+}
+
+/* ---------- NAVBAR ---------- */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.menu a{
+    margin-left:20px;
+    text-decoration:none;
+    color:#333;
+    font-weight:500;
+}
+
+/* ---------- MAIN ---------- */
+
+.main{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:60px;
+}
+
+/* ---------- TOOL CARD ---------- */
+
+.container{
+    background:white;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    text-align:center;
+    width:450px;
+}
+
+h2{
+    margin-bottom:20px;
+    color:#333;
+}
+
+input[type="file"]{
+    padding:10px;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    background:#667eea;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#5a67d8;
+}
+
+/* ---------- FEATURES ---------- */
+
+.features{
+    display:flex;
+    justify-content:center;
+    gap:80px;
+    margin-top:70px;
+    color:white;
+}
+
+.feature{
+    text-align:center;
+}
+
+.feature img{
+    width:50px;
+    margin-bottom:10px;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+    text-align:center;
+    margin-top:60px;
+    color:white;
+    padding-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">WebTools</div>
+
+<div class="menu">
+<a href="/">URL Shortener</a>
+<a href="/file-compress/">File Compressor</a>
+<a href="/image-compress/">Image Compressor</a>
+</div>
+
+</nav>
+
+<div class="main">
+
+<!-- IMAGE COMPRESSOR CARD -->
+
+<div class="container">
+
+<h2>Image Compressor</h2>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<input type="file" name="image" required>
+
+<br>
+
+<button type="submit">Compress Image</button>
+
+</form>
+
+</div>
+
+<!-- FEATURES -->
+
+<div class="features">
+
+<div class="feature">
+<img src="https://img.icons8.com/ios-filled/50/ffffff/security-checked.png">
+<p>100% Secure</p>
+</div>
+
+<div class="feature">
+<img src="https://img.icons8.com/ios-filled/50/ffffff/privacy.png">
+<p>Privacy Protected</p>
+</div>
+
+<div class="feature">
+<img src="https://img.icons8.com/ios-filled/50/ffffff/rocket.png">
+<p>Fast Processing</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+<p>© 2026 WebTools Platform | Built with Django</p>
+</footer>
+
+</body>
+</html>

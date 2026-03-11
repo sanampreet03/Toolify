@@ -1,0 +1,235 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Toolify | URL Shortener | File Compressor | Image Compressor</title>
+
+<style>
+
+/* ---------- BODY ---------- */
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    margin:0;
+}
+
+/* ---------- NAVBAR ---------- */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.menu a{
+    margin-left:20px;
+    text-decoration:none;
+    color:#333;
+    font-weight:500;
+}
+
+/* ---------- MAIN SECTION ---------- */
+
+.main{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:60px;
+}
+
+/* ---------- CARD ---------- */
+
+.container{
+    background:white;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    text-align:center;
+    width:500px;
+}
+
+h1{
+    margin-bottom:25px;
+    color:#333;
+}
+
+form{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+}
+
+input[type="text"]{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    width:250px;
+}
+
+button{
+    padding:10px 18px;
+    background:#667eea;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#5a67d8;
+}
+
+.result{
+    margin-top:20px;
+}
+
+/* ---------- FEATURE ICONS ---------- */
+
+.features{
+    display:flex;
+    justify-content:center;
+    gap:80px;
+    margin-top:70px;
+    color:white;
+}
+
+.feature{
+    text-align:center;
+}
+
+.feature img{
+    width:50px;
+    margin-bottom:10px;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+    text-align:center;
+    margin-top:60px;
+    color:white;
+    padding-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">WebTools</div>
+
+<div class="menu">
+<a href="/">URL Shortener</a>
+<a href="/file-compress/">File Compressor</a>
+<a href="/image-compress/">Image Compressor</a>
+</div>
+
+</nav>
+
+<div class="main">
+
+<!-- URL SHORTENER CARD -->
+
+<div class="container">
+
+<h1>URL Shortener</h1>
+
+<form method="POST">
+{% csrf_token %}
+<input type="text" name="url" placeholder="Enter URL" required>
+<button type="submit">Shorten</button>
+</form>
+
+{% if short_url %}
+
+<div class="result">
+
+<p>Your Short URL:</p>
+
+<input type="text" value="{{ short_url }}" id="shortLink" readonly>
+
+<button onclick="copyLink()">Copy</button>
+
+<h3>QR Code</h3>
+
+<img src="data:image/png;base64,{{ qr_code }}" width="120">
+
+</div>
+
+{% endif %}
+
+{% if error %}
+
+<p style="color:red">{{ error }}</p>
+{% endif %}
+
+<h3>Other Tools</h3>
+
+<a href="{% url 'file_compress' %}">
+<button>File Compressor</button>
+</a>
+
+<a href="/image-compress/">
+<button>Image Compressor</button>
+</a>
+
+</div>
+
+<!-- FEATURES SECTION -->
+
+<div class="features">
+
+<div class="feature">
+<img src="https://img.icons8.com/ios-filled/50/ffffff/security-checked.png">
+<p>100% Secure</p>
+</div>
+
+<div class="feature">
+<img src="https://img.icons8.com/ios-filled/50/ffffff/privacy.png">
+<p>Privacy Protected</p>
+</div>
+
+<div class="feature">
+<img src="https://img.icons8.com/ios-filled/50/ffffff/rocket.png">
+<p>Fast Processing</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+<p>© 2026 WebTools Platform | Built with Django</p>
+</footer>
+
+<script>
+
+function copyLink(){
+var copyText=document.getElementById("shortLink");
+copyText.select();
+document.execCommand("copy");
+alert("Link copied!");
+}
+
+</script>
+
+</body>
+</html>
